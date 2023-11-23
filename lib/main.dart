@@ -15,13 +15,15 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Map maps = {};
+  Map mapss = {};
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         body: Center(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               ElevatedButton(
@@ -39,11 +41,11 @@ class _MyAppState extends State<MyApp> {
                 height: 400,
                 color: Colors.blue.shade100,
                 child: ListView.builder(
-                    itemCount: maps.isEmpty ? 0 : maps["channels"].length,
+                    itemCount: mapss.isEmpty ? 0 : mapss["channels"].length,
                     itemBuilder: (BuildContext context, index) {
                       return Padding(
                         padding: EdgeInsets.only(left: 10, top: 10),
-                        child: Text("${maps["channels"][index]["name"]}"),
+                        child: Text("${mapss["channels"][index]["name"]}"),
                       );
                     }),
               )
@@ -58,6 +60,6 @@ class _MyAppState extends State<MyApp> {
     Dio dio = Dio();
     String url = "https://www.douban.com/j/app/radio/channels";
     var res = await dio.get(url);
-    maps = res.data;
+    mapss = res.data;
   }
 }
